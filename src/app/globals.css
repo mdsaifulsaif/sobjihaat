@@ -1,26 +1,209 @@
+/* ============================================= */
+/*          GROCERBANGA - GLOBAL CSS             */
+/* ============================================= */
+
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ==================== COLORS ==================== */
+  --primary: #7736ff;
+  --primary-dark: #5f2be6;
+  --secondary: #c3ff41;
+  --secondary-dark: #a8e02a;
+  --accent: #000000;
+  
+  /* Text */
+  --text-primary: #1f1f3d;
+  --text-secondary: #5f5f86;
+  --text-light: #f8f9ff;
+  
+  /* Backgrounds */
+  --bg-light: #ffffff;
+  --bg-gray: #f8f9ff;
+  --sec-title: #1e0a52;
+
+  /* Others */
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --border-radius: 12px;
+  --border-radius-sm: 8px;
+  --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-md: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Tailwind Theme Extension */
+@theme {
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --breakpoint-2xl: 1440px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Base Styles */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter Tight", system-ui, -apple-system, sans-serif;
+  color: var(--text-primary);
+  background-color: var(--bg-light);
+  line-height: 1.6;
+}
+
+/* Container */
+.container-custom {
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* Glass Navbar */
+.glass-navbar {
+  position: relative;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 10px 30px rgba(232, 237, 255, 0.4);
+  border: 1px solid rgba(255,255,255,0.6);
+}
+
+.glass-navbar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+  pointer-events: none;
+}
+
+/* Typography */
+.display-xxxl { font-size: 3rem; font-weight: 600; line-height: 1.05; letter-spacing: -0.04em; }
+.display-xxl  { font-size: 2.75rem; font-weight: 600; line-height: 1.05; letter-spacing: -0.03em; }
+.display-xl   { font-size: 2.25rem; font-weight: 600; line-height: 1.1; letter-spacing: -0.025em; }
+.display-l    { font-size: 2rem; font-weight: 600; line-height: 1.1; }
+.display-m    { font-size: 1.75rem; font-weight: 600; line-height: 1.15; }
+.display-s    { font-size: 1.35rem; font-weight: 600; line-height: 1.2; }
+
+.body-l  { font-size: 1.05rem; line-height: 1.6; }
+.body-m  { font-size: 0.95rem; line-height: 1.6; }
+.body-s  { font-size: 0.875rem; line-height: 1.5; }
+
+@media (min-width: 768px) {
+  .display-xxxl { font-size: 4.5rem; }
+  .display-xxl  { font-size: 3.5rem; }
+  .display-xl   { font-size: 2.75rem; }
+}
+
+@media (min-width: 1024px) {
+  .display-xxxl { font-size: 5.5rem; }
+  .display-xxl  { font-size: 4.2rem; }
+  .display-xl   { font-size: 3.25rem; }
+}
+
+/* Buttons */
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  padding: 14px 32px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: #1e0a52;
+  padding: 14px 32px;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  transition: var(--transition);
+}
+
+.btn-secondary:hover {
+  background: var(--secondary-dark);
+  transform: translateY(-2px);
+}
+
+/* Product Card */
+.product-card {
+  background: white;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.product-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.product-card img {
+  transition: transform 0.4s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.08);
+}
+
+/* Category Card */
+.category-card {
+  background: white;
+  border-radius: var(--border-radius);
+  transition: var(--transition);
+}
+
+.category-card:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+/* Cart Drawer */
+.cart-drawer {
+  background: white;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+}
+
+/* Free Delivery Banner */
+.free-delivery {
+  background: linear-gradient(90deg, #1e0a52, #4a24a5);
+  color: white;
+}
+
+/* Marquee */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-marquee-left {
+  animation: marquee-left 25s linear infinite;
+}
+
+/* Gradient Backgrounds */
+.gradient-hero {
+  background: linear-gradient(135deg, #f3f0ff 0%, #e0d4ff 100%);
+}
+
+.bg-gradient-custom {
+  background: linear-gradient(to bottom, #f8f7ff, #ffffff);
+}
+
+/* Utility Classes */
+.text-primary { color: var(--primary); }
+.bg-primary { background-color: var(--primary); }
+.text-secondary { color: var(--secondary); }
+.bg-secondary { background-color: var(--secondary); }
+
+.rounded-custom { border-radius: var(--border-radius); }
+
+/* Responsive Adjustments */
+@media (max-width: 640px) {
+  .display-xxxl { font-size: 2.5rem; }
+  .product-card { margin-bottom: 1rem; }
 }
