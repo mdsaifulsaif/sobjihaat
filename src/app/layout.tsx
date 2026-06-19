@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import toast, { Toaster } from "react-hot-toast";
 import "./globals.css";
-import TanstackProvider from "@/providers/TanstackProvider";
+// import TanstackProvider from "@/providers/TanstackProvider";
+import ReactQueryProvider from "@/providers/react-query-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,10 +31,11 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <TanstackProvider>
+        <ReactQueryProvider>
+          {/* <Navber/> */}
           <Toaster />
           {children}
-        </TanstackProvider>
+        </ReactQueryProvider>
       </body>
     </html>
   );
